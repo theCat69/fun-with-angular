@@ -3,12 +3,15 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { Config } from '../models/config';
+import { CONFIG } from '../main';
 
-export const appConfig: ApplicationConfig = {
+export const appConfigFactory: (conf: Config) => ApplicationConfig = (conf) => ({
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideAnimations(),
-    provideRouter(routes)
+    provideRouter(routes),
+    { provide: CONFIG, useValue: conf }
   ]
-};
+});

@@ -1,9 +1,11 @@
 <div class="app-grid">
   <header class="topbar">
     <mat-toolbar color="primary">
-      <button mat-icon-button (click)="toggleSidenav()" aria-label="Toggle navigation" class="hamburger">
-        <mat-icon>menu</mat-icon>
-      </button>
+      @if(connected) {
+        <button mat-icon-button (click)="toggleSidenav()" aria-label="Toggle navigation" class="hamburger">
+          <mat-icon>menu</mat-icon>
+        </button>
+      }
       <span class="logo">Fun with Angular</span>
       <span class="spacer"></span>
       <nav class="top-actions">
@@ -13,18 +15,21 @@
   </header>
 
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer mode="side" opened class="sidenav">
-      <mat-nav-list>
-        @for (item of navItems; track item) {
-          <mat-list-item>{{ item }}</mat-list-item>
-        }
-      </mat-nav-list>
-    </mat-sidenav>
+    @if(connected) {
+      <mat-sidenav #drawer mode="side" opened class="sidenav">
+        <mat-nav-list>
+          @for (item of navItems; track item) {
+            <mat-list-item>{{ item }}</mat-list-item>
+          }
+        </mat-nav-list>
+      </mat-sidenav>
+    }
 
     <mat-sidenav-content class="content" role="main">
       <div class="content-inner">
         <h1>Welcome to the demo</h1>
         <p>Scroll the main area to see sticky top bar and side nav.</p>
+        <p>App Config Value: {{ config.conf }}</p>
 
         <section class="demo-cards">
           @for (i of items; track i) {
