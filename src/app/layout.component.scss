@@ -1,43 +1,47 @@
 .app-grid {
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     "topbar"
-    "content";
+    "content-sidebar";
 }
 
 .topbar {
   grid-area: topbar;
-  position: sticky;
-  top: 0;
-  z-index: 20;
 }
 
 .sidenav-container {
-  grid-area: content;
-  height: calc(100vh - 64px);
-  display: block;
+  width: 100%;
+  margin: 0;
+  grid-area: content-sidebar;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "sidenav content";
 }
 
-mat-sidenav {
-  width: 240px;
-  box-shadow: none;
-  border-right: 1px solid rgba(0,0,0,0.06);
-}
-
-mat-sidenav-content.content {
+.sidenav {
+  grid-area: sidenav;
+  margin: 0;
   overflow: auto;
-  padding: 1.25rem;
+  width: 240px;
+  background: var(--mat-background, #fff);
+  border-right: 1px solid rgba(0,0,0,0.08);
+}
+
+.content {
+  overflow: auto;
+  padding: 1.25rem; 
+  background: transparent;
+  grid-area: content;
 }
 
 .content-inner {
-  max-width: 1100px;
   margin: 0 auto;
+  width: 100%;
 }
 
-  .demo-cards {
+.demo-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1rem;
@@ -53,21 +57,4 @@ mat-sidenav-content.content {
 
 .spacer {
   flex: 1 1 auto;
-}
-
-@media (max-width: 800px) {
-  .app-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-      "topbar"
-      "sidenav"
-      "content";
-  }
-
-  .sidenav {
-    position: relative;
-    top: 0;
-    height: auto;
-  }
 }
