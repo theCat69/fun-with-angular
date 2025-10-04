@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatSidenavModule, MatListModule],
+  imports: [CommonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })

@@ -1,11 +1,11 @@
 .app-grid {
   height: 100vh;
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "topbar topbar"
-    "sidenav content";
+    "topbar"
+    "content";
 }
 
 .topbar {
@@ -15,20 +15,20 @@
   z-index: 20;
 }
 
-.sidenav {
-  grid-area: sidenav;
-  position: sticky;
-  top: 64px; /* account for topbar height */
+.sidenav-container {
+  grid-area: content;
   height: calc(100vh - 64px);
-  overflow: auto;
-  background: var(--mat-background, #fff);
-  border-right: 1px solid rgba(0,0,0,0.08);
+  display: block;
 }
 
-.content {
-  grid-area: content;
+mat-sidenav {
+  width: 240px;
+  box-shadow: none;
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+
+mat-sidenav-content.content {
   overflow: auto;
-  background: transparent;
   padding: 1.25rem;
 }
 
@@ -37,7 +37,7 @@
   margin: 0 auto;
 }
 
-.demo-cards {
+  .demo-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1rem;

@@ -9,27 +9,29 @@
     </mat-toolbar>
   </header>
 
-  <aside class="sidenav">
-    <mat-nav-list>
-      @for (item of navItems; track item) {
-        <mat-list-item>{{ item }}</mat-list-item>
-      }
-    </mat-nav-list>
-  </aside>
-
-  <main class="content" role="main">
-    <div class="content-inner">
-      <h1>Welcome to the demo</h1>
-      <p>Scroll the main area to see sticky top bar and side nav.</p>
-
-      <section class="demo-cards">
-        @for (i of items; track i) {
-          <div class="card">
-            <h3>Card {{ i }}</h3>
-            <p>Sample content for card {{ i }} — this is mock/demo content.</p>
-          </div>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened class="sidenav">
+      <mat-nav-list>
+        @for (item of navItems; track item) {
+          <mat-list-item>{{ item }}</mat-list-item>
         }
-      </section>
-    </div>
-  </main>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content" role="main">
+      <div class="content-inner">
+        <h1>Welcome to the demo</h1>
+        <p>Scroll the main area to see sticky top bar and side nav.</p>
+
+        <section class="demo-cards">
+          @for (i of items; track i) {
+            <div class="card">
+              <h3>Card {{ i }}</h3>
+              <p>Sample content for card {{ i }} — this is mock/demo content.</p>
+            </div>
+          }
+        </section>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
