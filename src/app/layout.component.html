@@ -1,0 +1,31 @@
+<div class="app-grid">
+  <header class="topbar">
+    <mat-toolbar color="primary">
+      <span class="logo">Fun with Angular</span>
+      <span class="spacer"></span>
+      <nav class="top-actions">
+        <button mat-button>Login</button>
+      </nav>
+    </mat-toolbar>
+  </header>
+
+  <aside class="sidenav">
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of navItems">{{ item }}</mat-list-item>
+    </mat-nav-list>
+  </aside>
+
+  <main class="content" role="main">
+    <div class="content-inner">
+      <h1>Welcome to the demo</h1>
+      <p>Scroll the main area to see sticky top bar and side nav.</p>
+
+      <section class="demo-cards">
+        <div *ngFor="let i of items" class="card">
+          <h3>Card {{ i }}</h3>
+          <p>Sample content for card {{ i }} — this is mock/demo content.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
