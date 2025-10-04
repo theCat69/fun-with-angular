@@ -5,8 +5,8 @@ import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { CONFIG } from '../main';
-import { Config } from '../models/config';
+import { CONFIG } from '../../main';
+import { Config } from '../../models/config';
 
 @Component({
   selector: 'app-layout',

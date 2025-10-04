@@ -1,6 +1,6 @@
 .app-grid {
-  height: 100vh;
   display: grid;
+  height: 100vh;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     "topbar"
@@ -9,11 +9,10 @@
 
 .topbar {
   grid-area: topbar;
+  overflow: hidden;
 }
 
 .sidenav-container {
-  width: 100%;
-  margin: 0;
   grid-area: content-sidebar;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -22,11 +21,8 @@
 
 .sidenav {
   grid-area: sidenav;
-  margin: 0;
-  overflow: auto;
   width: 240px;
   background: var(--mat-background, #fff);
-  border-right: 1px solid rgba(0,0,0,0.08);
 }
 
 .content {
@@ -37,15 +33,13 @@
 }
 
 .content-inner {
-  margin: 0 auto;
-  width: 100%;
+  margin-bottom: 4rem;
 }
 
 .demo-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1rem;
-  margin-top: 1rem;
 }
 
 .card {
