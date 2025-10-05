@@ -19,14 +19,6 @@ import { AppRoute, routes } from '../app.routes';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-  navItems = [
-    'Home',
-    'Explore',
-    'Components',
-    'Templates',
-    'About'
-  ];
-
   @ViewChild('drawer') 
   drawer?: MatSidenav;
 

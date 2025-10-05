@@ -7,7 +7,7 @@
           <mat-icon>menu</mat-icon>
         </button>
         }
-        <span class="logo">Fun with Angular</span>
+        <span>Fun with Angular</span>
         <mat-form-field>
           <mat-select>
             @for(country of countries; track country.code) {
@@ -38,7 +38,7 @@
 
   <mat-sidenav-container class="sidenav-container">
     @if(connected) {
-    <mat-sidenav  #drawer mode="side" opened class="sidenav" role="navigation">
+    <mat-sidenav #drawer mode="side" opened class="sidenav" role="navigation">
       <mat-nav-list>
         @for (item of appRoutes; track item.path) {
         <mat-list-item [routerLink]="item.path" class="nav-item">
