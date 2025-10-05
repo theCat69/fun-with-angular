@@ -1,0 +1,12 @@
+<h1>Welcome to the demo</h1>
+<p>Scroll the main area to see sticky top bar and side nav.</p>
+<p>App Config Value: {{ config.conf }}</p>
+
+<section class="demo-cards">
+    @for (i of items; track i) {
+    <div class="card">
+        <h3>Card {{ i }}</h3>
+        <p>Sample content for card {{ i }} — this is mock/demo content.</p>
+    </div>
+    }
+</section>

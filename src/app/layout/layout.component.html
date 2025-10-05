@@ -1,6 +1,6 @@
 <div class="app-grid">
   <header class="topbar">
-    <mat-toolbar color="primary">
+    <mat-toolbar>
       <div class="left-toolbar-container">
         @if(connected) {
         <button mat-icon-button (click)="toggleSidenav()" aria-label="Toggle navigation" class="hamburger">
@@ -38,12 +38,12 @@
 
   <mat-sidenav-container class="sidenav-container">
     @if(connected) {
-    <mat-sidenav #drawer mode="side" opened class="sidenav">
+    <mat-sidenav  #drawer mode="side" opened class="sidenav" role="navigation">
       <mat-nav-list>
-        @for (item of navItems; track item) {
-        <mat-list-item class="nav-item">
-          <mat-icon matListItemIcon>menu</mat-icon>
-          <div>{{ item }}</div>
+        @for (item of appRoutes; track item.path) {
+        <mat-list-item [routerLink]="item.path" class="nav-item">
+          <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
+          <div>{{ item.title }}</div>
         </mat-list-item>
         }
       </mat-nav-list>
@@ -52,18 +52,7 @@
 
     <mat-sidenav-content class="content" role="main">
       <div class="content-inner">
-        <h1>Welcome to the demo</h1>
-        <p>Scroll the main area to see sticky top bar and side nav.</p>
-        <p>App Config Value: {{ config.conf }}</p>
-
-        <section class="demo-cards">
-          @for (i of items; track i) {
-          <div class="card">
-            <h3>Card {{ i }}</h3>
-            <p>Sample content for card {{ i }} — this is mock/demo content.</p>
-          </div>
-          }
-        </section>
+        <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
