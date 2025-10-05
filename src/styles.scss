@@ -12,11 +12,20 @@ html {
     ),
     density: 0,
   ));
+
 }
 
 html, body, app-root {
 	height: 100%;
 	margin: 0;
+}
+
+.light-theme {
+	color-scheme: light;
+}
+
+.dark-theme {
+	color-scheme: dark;
 }
 
 body {

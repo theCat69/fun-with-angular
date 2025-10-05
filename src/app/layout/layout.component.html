@@ -25,6 +25,11 @@
       <span class="spacer"></span>
       <nav class="top-actions">
         <button mat-button>Login</button>
+        @if(currentTheme() === 'light') {
+        <mat-icon (click)="switchTheme('dark')">dark_mode</mat-icon>
+        } @else {
+        <mat-icon (click)="switchTheme('light')">light_mode</mat-icon>
+        }
       </nav>
     </mat-toolbar>
   </header>

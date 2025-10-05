@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
@@ -9,6 +9,7 @@ import { CONFIG } from '../../main';
 import { Config } from '../../models/config';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { Theme, ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-layout',
@@ -17,7 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
   navItems = [
     'Home',
     'Explore',
@@ -38,6 +39,19 @@ export class LayoutComponent {
     { code: 'de', label: 'German', img: 'germany-flag.webp' },
     { code: 'it', label: 'Italian', img: 'italy-flag.webp' }
   ]
+
+
+  private readonly themeService = inject(ThemeService);
+
+  currentTheme = this.themeService.getCurrentTheme();
+
+  ngOnInit(): void {
+    this.themeService.setTheme(this.currentTheme());
+  }
+
+  switchTheme(theme: Theme) {
+    this.themeService.setTheme(theme);
+  }
 
   toggleSidenav() {
     this.drawer?.toggle();
