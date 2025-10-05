@@ -28,7 +28,9 @@ export class LayoutComponent implements OnInit {
   ];
   // Provide a simple items array for the template to iterate over
   items = Array.from({ length: 30 }, (_, i) => i + 1);
-  @ViewChild('drawer') drawer?: MatSidenav;
+
+  @ViewChild('drawer') 
+  drawer?: MatSidenav;
 
   config: Config = inject(CONFIG);
 

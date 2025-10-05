@@ -25,11 +25,13 @@
       <span class="spacer"></span>
       <nav class="top-actions">
         <button mat-button>Login</button>
+        <div class="theme-logo">
         @if(currentTheme() === 'light') {
-        <mat-icon (click)="switchTheme('dark')">dark_mode</mat-icon>
+        <mat-icon animate.enter="moon-enter-animation" animate.leave="moon-leave-animation" (click)="switchTheme('dark')">dark_mode</mat-icon>
         } @else {
-        <mat-icon (click)="switchTheme('light')">light_mode</mat-icon>
+        <mat-icon animate.enter="sun-enter-animation" animate.leave="sun-leave-animation" (click)="switchTheme('light')">light_mode</mat-icon>
         }
+        </div>
       </nav>
     </mat-toolbar>
   </header>
