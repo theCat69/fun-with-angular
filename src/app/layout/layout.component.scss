@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 .app-grid {
   display: grid;
   height: 100vh;
@@ -28,6 +30,17 @@
   gap: 8px;
 }
 
+.flag-selected {
+  display : flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.selected-image {
+  height: 16px;
+  width: 24px;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -43,6 +56,7 @@
 }
 
 mat-toolbar {
+
   background: var(--mat-sys-primary, #ffffff);
   color: var(--mat-sys-on-primary, #000000);
 
@@ -101,11 +115,11 @@ mat-toolbar {
 }
 
 .moon-enter-animation {
-  animation: slide-fade ease-in 1s;
+  animation: slide-fade ease-in 0.5s;
 }
 
 .moon-leave-animation {
-  animation: slide-top-fade 1s reverse;
+  animation: slide-top-fade 0.5s reverse;
 }
 
 @keyframes slide-fade {
@@ -121,11 +135,11 @@ mat-toolbar {
 }
 
 .sun-enter-animation {
-  animation: slide-fade ease-in 1s;
+  animation: slide-fade ease-in 0.5s;
 }
 
 .sun-leave-animation {
-  animation: slide-top-fade 1s reverse;
+  animation: slide-top-fade 0.5s reverse;
 }
 
 @keyframes slide-top-fade {
