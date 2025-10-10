@@ -14,8 +14,6 @@ import { Observable, of } from 'rxjs';
   ],
 })
 export class NoRInString implements AsyncValidator {
-  constructor() {}
-
   validate(control: AbstractControl<string>): Observable<ValidationErrors | null> {
     if (control.value.includes('r')) {
       return of({ rIsPresent: true });

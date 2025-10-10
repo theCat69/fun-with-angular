@@ -62,7 +62,7 @@ export class LayoutComponent implements OnInit {
     this.drawer?.toggle();
   }
 
-  languageChanged(value: any) {
+  languageChanged(value: string) {
     const selectedLang = this.countries.find((c) => c.code === value);
     this.selectedCountry.set(
       selectedLang ? selectedLang : ({} as { code: string; label: string; img: string }),
