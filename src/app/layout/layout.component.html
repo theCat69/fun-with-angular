@@ -2,10 +2,15 @@
   <header class="topbar">
     <mat-toolbar>
       <div class="left-toolbar-container">
-        @if(connected) {
-        <button mat-icon-button (click)="toggleSidenav()" aria-label="Toggle navigation" class="hamburger">
-          <mat-icon>menu</mat-icon>
-        </button>
+        @if (connected) {
+          <button
+            mat-icon-button
+            (click)="toggleSidenav()"
+            aria-label="Toggle navigation"
+            class="hamburger"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
         }
         <span>Fun with Angular</span>
         <mat-form-field>
@@ -13,18 +18,28 @@
             <mat-select-trigger>
               @let selCountry = selectedCountry();
               <div class="flag-selected">
-                <div [style.background-image]="'url(img/' + selCountry.img  + '_mini.webp)'" class="selected-image">
-                </div><span>{{ selCountry?.label }}</span>
+                <div
+                  [style.background-image]="'url(img/' + selCountry.img + '_mini.webp)'"
+                  class="selected-image"
+                ></div>
+                <span>{{ selCountry?.label }}</span>
               </div>
             </mat-select-trigger>
-            @for(country of countries; track country.code) {
-            <mat-option [value]="country.code">
-              <div class="flag-option">
-                <img ngSrc="img/{{country.img}}.webp" alt="{{ country.label }} flag" class="flag-icon" width="24"
-                  height="16" alt="{{country.label}} flag" priority="false">
-                <p>{{ country.label }}</p>
-              </div>
-            </mat-option>
+            @for (country of countries; track country.code) {
+              <mat-option [value]="country.code">
+                <div class="flag-option">
+                  <img
+                    ngSrc="img/{{ country.img }}.webp"
+                    alt="{{ country.label }} flag"
+                    class="flag-icon"
+                    width="24"
+                    height="16"
+                    alt="{{ country.label }} flag"
+                    priority="false"
+                  />
+                  <p>{{ country.label }}</p>
+                </div>
+              </mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -33,12 +48,20 @@
       <nav class="top-actions">
         <button mat-button>Login</button>
         <div class="theme-logo">
-          @if(currentTheme() === 'light') {
-          <mat-icon animate.enter="moon-enter-animation" animate.leave="moon-leave-animation"
-            (click)="switchTheme('dark')">dark_mode</mat-icon>
+          @if (currentTheme() === 'light') {
+            <mat-icon
+              animate.enter="moon-enter-animation"
+              animate.leave="moon-leave-animation"
+              (click)="switchTheme('dark')"
+              >dark_mode</mat-icon
+            >
           } @else {
-          <mat-icon animate.enter="sun-enter-animation" animate.leave="sun-leave-animation"
-            (click)="switchTheme('light')">light_mode</mat-icon>
+            <mat-icon
+              animate.enter="sun-enter-animation"
+              animate.leave="sun-leave-animation"
+              (click)="switchTheme('light')"
+              >light_mode</mat-icon
+            >
           }
         </div>
       </nav>
@@ -46,17 +69,17 @@
   </header>
 
   <mat-sidenav-container class="sidenav-container">
-    @if(connected) {
-    <mat-sidenav #drawer mode="side" opened class="sidenav" role="navigation">
-      <mat-nav-list>
-        @for (item of appRoutes; track item.path) {
-        <mat-list-item [routerLink]="item.path" class="nav-item">
-          <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
-          <div>{{ item.title }}</div>
-        </mat-list-item>
-        }
-      </mat-nav-list>
-    </mat-sidenav>
+    @if (connected) {
+      <mat-sidenav #drawer mode="side" opened class="sidenav" role="navigation">
+        <mat-nav-list>
+          @for (item of appRoutes; track item.path) {
+            <mat-list-item [routerLink]="item.path" class="nav-item">
+              <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+              <div>{{ item.title }}</div>
+            </mat-list-item>
+          }
+        </mat-nav-list>
+      </mat-sidenav>
     }
 
     <mat-sidenav-content class="content" role="main">

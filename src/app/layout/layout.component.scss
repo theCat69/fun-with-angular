@@ -5,8 +5,8 @@
   height: 100vh;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "topbar"
-    "content-sidebar";
+    'topbar'
+    'content-sidebar';
 }
 
 .topbar {
@@ -31,7 +31,7 @@
 }
 
 .flag-selected {
-  display : flex;
+  display: flex;
   align-items: center;
   gap: 8px;
 }
@@ -56,7 +56,6 @@
 }
 
 mat-toolbar {
-
   background: var(--mat-sys-primary, #ffffff);
   color: var(--mat-sys-on-primary, #000000);
 
@@ -70,7 +69,7 @@ mat-toolbar {
   grid-area: content-sidebar;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-areas: "sidenav content";
+  grid-template-areas: 'sidenav content';
 }
 
 .sidenav {
