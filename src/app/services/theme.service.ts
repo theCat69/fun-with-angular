@@ -1,11 +1,10 @@
 import { Injectable, signal, Signal, WritableSignal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemeService {
-
-  private currentTheme: WritableSignal<Theme> = signal('light')
+  private currentTheme: WritableSignal<Theme> = signal('light');
 
   public setTheme(theme: Theme) {
     this.applyTheme(theme);
@@ -30,7 +29,7 @@ export class ThemeService {
     }
 
     this.currentTheme.set(theme);
-  } 
+  }
 }
 
 export type Theme = 'light' | 'dark' | 'system';

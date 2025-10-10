@@ -1,3 +1,3 @@
-export type Config = {
-    conf: string;
-};
+export interface Config {
+  conf: string;
+}

@@ -1,4 +1,8 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 
@@ -12,6 +16,6 @@ export const appConfigFactory: (conf: Config) => ApplicationConfig = (conf) => (
     provideZonelessChangeDetection(),
     provideAnimations(),
     provideRouter(routes),
-    { provide: CONFIG, useValue: conf }
-  ]
+    { provide: CONFIG, useValue: conf },
+  ],
 });

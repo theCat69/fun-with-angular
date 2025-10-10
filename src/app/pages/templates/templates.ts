@@ -8,8 +8,8 @@ import { NoRInString } from '../../directives/no-r-in-string';
   selector: 'app-templates',
   imports: [MatFormFieldModule, MatLabel, MatInputModule, FormsModule, NoRInString],
   templateUrl: './templates.html',
-  styleUrl: './templates.scss'
+  styleUrl: './templates.scss',
 })
 export class Templates {
- modelInput = model('');
+  modelInput = model('');
 }

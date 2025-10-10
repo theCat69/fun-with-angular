@@ -6,7 +6,7 @@ import { CONFIG } from '../../../main';
   selector: 'app-home',
   imports: [],
   templateUrl: './home.html',
-  styleUrl: './home.scss'
+  styleUrl: './home.scss',
 })
 export class Home {
   config: Config = inject(CONFIG);

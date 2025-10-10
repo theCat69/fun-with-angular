@@ -14,9 +14,21 @@ import { AppRoute, routes } from '../app.routes';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatSelectModule, RouterOutlet, RouterLink],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    RouterOutlet,
+    RouterLink,
+  ],
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
   @ViewChild('drawer')
@@ -24,15 +36,15 @@ export class LayoutComponent implements OnInit {
 
   selectedCountry = signal({} as { code: string; label: string; img: string });
 
-  connected: boolean = true;
+  connected = true;
 
   appRoutes: AppRoute[] = routes;
 
   countries = [
     { code: 'fr', label: 'French', img: 'france-flag' },
     { code: 'de', label: 'German', img: 'germany-flag' },
-    { code: 'it', label: 'Italian', img: 'italy-flag' }
-  ]
+    { code: 'it', label: 'Italian', img: 'italy-flag' },
+  ];
 
   private readonly themeService = inject(ThemeService);
 
@@ -51,8 +63,9 @@ export class LayoutComponent implements OnInit {
   }
 
   languageChanged(value: any) {
-    const selectedLang = this.countries.find(c => c.code === value);
-    this.selectedCountry.set(selectedLang ? selectedLang: {} as { code: string; label: string; img: string; }); 
+    const selectedLang = this.countries.find((c) => c.code === value);
+    this.selectedCountry.set(
+      selectedLang ? selectedLang : ({} as { code: string; label: string; img: string }),
+    );
   }
-
 }
