@@ -1,4 +1,4 @@
-import { Component, computed, inject, model, signal } from '@angular/core';
+import { Component, computed, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   MatAutocompleteModule,
@@ -8,7 +8,6 @@ import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-mat-chip',
@@ -27,8 +26,6 @@ export class MatChip {
       ? this.allFruits.filter((fruit) => fruit.toLowerCase().includes(currentFruit))
       : this.allFruits.slice();
   });
-
-  readonly announcer = inject(LiveAnnouncer);
 
   private canAdd = true;
 
@@ -57,7 +54,6 @@ export class MatChip {
       }
 
       fruits.splice(index, 1);
-      this.announcer.announce(`Removed ${fruit}`);
       return [...fruits];
     });
   }

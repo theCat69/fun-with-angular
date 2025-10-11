@@ -1,11 +1,7 @@
 import { Directive, forwardRef } from '@angular/core';
-import {
-  AbstractControl,
-  AsyncValidator,
-  NG_ASYNC_VALIDATORS,
-  ValidationErrors,
-} from '@angular/forms';
+import { AbstractControl, AsyncValidator, NG_ASYNC_VALIDATORS } from '@angular/forms';
 import { Observable, of } from 'rxjs';
+import { AppValidationErrors } from '../../models/app-validation-errors';
 
 @Directive({
   selector: '[appNoRInString]',
@@ -14,9 +10,13 @@ import { Observable, of } from 'rxjs';
   ],
 })
 export class NoRInString implements AsyncValidator {
-  validate(control: AbstractControl<string>): Observable<ValidationErrors | null> {
+  validate(control: AbstractControl<string>): Observable<AppValidationErrors | null> {
     if (control.value.includes('r')) {
-      return of({ rIsPresent: true });
+      return of({
+        rIsPresent: {
+          messageTranslateKey: 'common.errors.message.norinstring',
+        },
+      });
     }
     return of(null);
   }

@@ -11,13 +11,9 @@
       #modelInputNg="ngModel"
       appNoRInString
     />
-    @if (modelInputNg.invalid && (modelInputNg.dirty || modelInputNg.touched)) {
-      @if (modelInputNg.hasError('rIsPresent')) {
-        <mat-error> has R </mat-error>
-      } @else {
-        <mat-error> required </mat-error>
-      }
-    }
+    <mat-error>
+      {{ modelInputNg.errors | validationErrorParser }}
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
