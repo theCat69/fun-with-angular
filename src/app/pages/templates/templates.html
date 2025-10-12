@@ -25,14 +25,13 @@
     [(ngModel)]="modelInputChiled"
     name="childName"
     label="childLabel"
-    [email]="true"
-    [required]="true"
+    required
+    email
   />
-  <app-app-input
-    [(ngModel)]="modelInputChiled2"
-    name="childName2"
-    label="childLabel2"
-    [required]="true"
-  />
+  <app-app-input [(ngModel)]="modelInputChiled2" name="childName2" label="childLabel2" required />
   <button matButton type="submit" [disabled]="!inputTestForm.form.valid">submit</button>
+</form>
+
+<form class="example-form" #inputTestForm2="ngForm">
+  <app-app-input [(ngModel)]="modelInputChiled3" name="childName3" label="childLabel3" required />
 </form>

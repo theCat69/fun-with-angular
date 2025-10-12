@@ -1,25 +1,10 @@
-import {
-  Component,
-  computed,
-  input,
-  model,
-  Optional,
-  ViewChild,
-} from '@angular/core';
-import {
-  ControlContainer,
-  FormsModule,
-  NgForm,
-  NgModel,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { booleanAttribute, Component, input, model, ViewChild } from '@angular/core';
+import { FormsModule, NgModel } from '@angular/forms';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ValidationErrorParserPipe } from '../../../../pipes/validation-error-parser-pipe';
-import { WithValidator } from '../mixins/with-validator';
-import { ComponentBase } from '../../../../../models/mixins-helpers';
 import {
+  provideControlContainer,
   provideControlValueAccessor,
   WithControlValueAccessor,
 } from '../mixins/with-control-value-accessor';
@@ -28,17 +13,11 @@ import {
   selector: 'app-app-input',
   imports: [FormsModule, MatFormFieldModule, MatLabel, MatInputModule, ValidationErrorParserPipe],
   providers: [provideControlValueAccessor(AppInput)],
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      deps: [[Optional, NgForm]],
-      useFactory: (ngForm: NgForm) => ngForm,
-    },
-  ],
+  viewProviders: [provideControlContainer()],
   templateUrl: './app-input.html',
   styleUrl: './app-input.scss',
 })
-export class AppInput extends WithValidator(WithControlValueAccessor(ComponentBase)) {
+export class AppInput extends WithControlValueAccessor<string>() {
   @ViewChild('appInput')
   model!: NgModel;
 
@@ -48,20 +27,8 @@ export class AppInput extends WithValidator(WithControlValueAccessor(ComponentBa
   defaultValue = input('');
   placeholder = input('');
   label = input('');
-  required = input(false);
-  email = input(false);
+  required = input(false, { transform: booleanAttribute });
   width = input('100%');
-
-  validators = computed(() => {
-    const validators: ValidatorFn[] = [];
-    if (this.required()) {
-      validators.push(Validators.required);
-    }
-    if (this.email()) {
-      validators.push(Validators.email);
-    }
-    return validators;
-  });
 
   // You need to find a way to
   // run those method so the parent

@@ -28,4 +28,5 @@ export class Templates {
   modelInput = model('');
   modelInputChiled = model('');
   modelInputChiled2 = model('');
+  modelInputChiled3 = model('');
 }

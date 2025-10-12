@@ -1,21 +1,24 @@
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { AbstractConstructor } from '../../../../../models/mixins-helpers';
-import { forwardRef, ModelSignal, Provider, Signal, signal, Type } from '@angular/core';
+import { ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR, NgForm } from '@angular/forms';
+import { AbstractComponentBase, AbstractConstructor } from '../../../../../models/mixins-helpers';
+import { forwardRef, ModelSignal, Optional, Provider, Signal, signal, Type } from '@angular/core';
 
-export function WithControlValueAccessor<TBase extends AbstractConstructor>(Base: TBase) {
+export function WithControlValueAccessor<
+  T,
+  TBase extends AbstractConstructor = typeof AbstractComponentBase,
+>(Base: TBase = AbstractComponentBase as TBase) {
   abstract class AbstractControlValueAccessor extends Base implements ControlValueAccessor {
-    abstract value: ModelSignal<any>;
+    abstract value: ModelSignal<T | undefined>;
     abstract name: string | Signal<string>;
 
     disabled = signal(false);
-    _onChange = (value: any) => {}; // eslint-disable-line
+    _onChange = (value: T | undefined) => {}; // eslint-disable-line
     _onTouched = () => {}; // eslint-disable-line
 
     writeValue(value: any): void {
       this.value.set(value);
     }
 
-    registerOnChange(fn: (value: any) => void): void {
+    registerOnChange(fn: (value: T | undefined) => void): void {
       this._onChange = fn;
     }
 
@@ -36,5 +39,13 @@ export const provideControlValueAccessor = <T>(cls: Type<T>): Provider => {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => cls),
     multi: true,
+  };
+};
+
+export const provideControlContainer = (): Provider => {
+  return {
+    provide: ControlContainer,
+    deps: [[Optional, NgForm]],
+    useFactory: (ngForm: NgForm) => (ngForm ? ngForm : new NgForm([], [])),
   };
 };
