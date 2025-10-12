@@ -7,7 +7,7 @@ import { AppValidationErrors, isAppValidationError } from '../../models/app-vali
 })
 export class ValidationErrorParserPipe implements PipeTransform {
   transform(value: AppValidationErrors | null): string | null {
-    console.log("pipe");
+    console.log('pipe');
     console.log(value);
     if (value) {
       const keys = Object.keys(value);

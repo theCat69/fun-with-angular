@@ -21,7 +21,18 @@
     <mat-label>Leave a comment</mat-label>
     <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
   </mat-form-field>
-  <app-app-input [(ngModel)]="modelInputChiled" name="childName" label="childLabel" [email]=true [required]=true/>
-  <app-app-input [(ngModel)]="modelInputChiled2" name="childName2" label="childLabel2" [required]=true />
-  <button matButton type="submit" [disabled]="inputTestForm.form.invalid">submit</button>
+  <app-app-input
+    [(ngModel)]="modelInputChiled"
+    name="childName"
+    label="childLabel"
+    [email]="true"
+    [required]="true"
+  />
+  <app-app-input
+    [(ngModel)]="modelInputChiled2"
+    name="childName2"
+    label="childLabel2"
+    [required]="true"
+  />
+  <button matButton type="submit" [disabled]="!inputTestForm.form.valid">submit</button>
 </form>

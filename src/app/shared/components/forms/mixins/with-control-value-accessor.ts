@@ -2,20 +2,20 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AbstractConstructor } from '../../../../../models/mixins-helpers';
 import { forwardRef, ModelSignal, Provider, Signal, signal, Type } from '@angular/core';
 
-export function WithControlValueAccessor<T, TBase extends AbstractConstructor>(Base: TBase) {
+export function WithControlValueAccessor<TBase extends AbstractConstructor>(Base: TBase) {
   abstract class AbstractControlValueAccessor extends Base implements ControlValueAccessor {
-    abstract value: ModelSignal<T>;
+    abstract value: ModelSignal<any>;
     abstract name: string | Signal<string>;
 
     disabled = signal(false);
-    _onChange = () => { };// eslint-disable-line
-    _onTouched = () => { };// eslint-disable-line
+    _onChange = (value: any) => {}; // eslint-disable-line
+    _onTouched = () => {}; // eslint-disable-line
 
-    writeValue(value: T): void {
+    writeValue(value: any): void {
       this.value.set(value);
     }
 
-    registerOnChange(fn: () => void): void {
+    registerOnChange(fn: (value: any) => void): void {
       this._onChange = fn;
     }
 

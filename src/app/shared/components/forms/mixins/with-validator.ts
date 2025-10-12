@@ -1,31 +1,37 @@
-import { NG_VALIDATORS, NgModel, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
+import {
+  FormControl,
+  NG_VALIDATORS,
+  ValidationErrors,
+  Validator,
+  ValidatorFn,
+} from '@angular/forms';
 import { AbstractConstructor } from '../../../../../models/mixins-helpers';
-import { forwardRef, Provider, signal, Type } from '@angular/core';
+import { forwardRef, ModelSignal, Provider, signal, Type } from '@angular/core';
 
 export function WithValidator<TBase extends AbstractConstructor>(Base: TBase) {
   abstract class AbstractValidator extends Base implements Validator {
-    abstract model: NgModel;
+    abstract value: ModelSignal<any>;
     abstract getValidators: () => ValidatorFn[];
-
     errors = signal<ValidationErrors | null>(null);
 
-    validate(): ValidationErrors | null {
+    validate(c: FormControl): ValidationErrors | null {
+      // c.setValidators(this.getValidators());
+      // console.log(c.value);
+      // c.updateValueAndValidity();
+      // console.log(c.value);
+      // this.errors.set(c.errors);
+      // return c.errors;
       // console.log("validate");
       // for (let validator of this.getValidators()) {
-      //   console.log(validator);
-      //   const result = validator(this.model.control);
-      //   console.log(result);
+      //
+      //   const result = validator(c);
       //   if (result) {
       //     this.errors.set(result);
       //     return result;
       //   }
       // }
-      // return null;
-      //
-      if (!this.model.invalid) {
-        return null;
-      }
-      return this.model.errors;
+      this.errors.set(null);
+      return null;
     }
   }
 

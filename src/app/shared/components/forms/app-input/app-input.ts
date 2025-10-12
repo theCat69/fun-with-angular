@@ -1,10 +1,27 @@
-import { Component, input, model, OnInit, Optional, ViewChild } from '@angular/core';
-import { ControlContainer, FormsModule, NgForm, NgModel, ValidatorFn, Validators } from '@angular/forms';
+import {
+  Component,
+  computed,
+  effect,
+  input,
+  model,
+  Optional,
+  signal,
+  ViewChild,
+} from '@angular/core';
+import {
+  ControlContainer,
+  FormsModule,
+  NgForm,
+  NgModel,
+  Validator,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ValidationErrorParserPipe } from '../../../../pipes/validation-error-parser-pipe';
 import { provideValidator, WithValidator } from '../mixins/with-validator';
-import { AbstractConstructor, ComponentBase } from '../../../../../models/mixins-helpers';
+import { ComponentBase } from '../../../../../models/mixins-helpers';
 import {
   provideControlValueAccessor,
   WithControlValueAccessor,
@@ -13,29 +30,23 @@ import { EmailValidator } from '../../../../directives/email-validator';
 
 @Component({
   selector: 'app-app-input',
-  imports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatLabel,
-    MatInputModule,
-    ValidationErrorParserPipe,
-    EmailValidator,
+  imports: [FormsModule, MatFormFieldModule, MatLabel, MatInputModule, ValidationErrorParserPipe],
+  providers: [provideControlValueAccessor(AppInput)],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      deps: [[Optional, NgForm]],
+      useFactory: (ngForm: NgForm) => ngForm,
+    },
   ],
-  providers: [provideControlValueAccessor(AppInput), provideValidator(AppInput)],
-  // viewProviders: [
-  //   {
-  //     provide: ControlContainer,
-  //     deps: [[Optional, NgForm]],
-  //     useFactory: (ngForm: NgForm) => ngForm,
-  //   },
-  // ],
   templateUrl: './app-input.html',
   styleUrl: './app-input.scss',
 })
-export class AppInput extends WithValidator(
-  WithControlValueAccessor<string | undefined, AbstractConstructor>(ComponentBase),
-) {
-  @ViewChild('modelInputNg')
+export class AppInput
+  extends WithValidator(WithControlValueAccessor(ComponentBase))
+  implements Validator
+{
+  @ViewChild('appInput')
   model!: NgModel;
 
   value = model<string>();
@@ -47,29 +58,34 @@ export class AppInput extends WithValidator(
   required = input(false);
   email = input(false);
   width = input('100%');
+  validators = computed(() => {
+    const validators: ValidatorFn[] = [];
+    if (this.required()) {
+      validators.push(Validators.required);
+    }
+    if (this.email()) {
+      validators.push(Validators.email);
+    }
+    return validators;
+  });
 
-  // ngOnInit(): void {
-  //   this.model.control.addValidators(this.getValidators);
-  // }
+  validatorEffet = effect(() => {
+    const control = this.model.control;
+    control.setValidators(this.validators());
+    control.updateValueAndValidity();
+    control.markAsTouched();
+  });
 
   // You need to find a way to
   // run those method so the parent
   // form gets events to trigger validation
   // on the field
   onInput() {
-    this._onChange();
+    this._onChange(this.value());
     this._onTouched();
   }
 
   getValidators: () => ValidatorFn[] = () => {
-    const validators: ValidatorFn[] = [];
-    if (this.required()) {
-      validators.push(Validators.required);
-    }
-    if (this.email()) {
-      validators.push(Validators.email)
-    }
-    return validators;
-  }
-
+    return this.validators();
+  };
 }

@@ -4,17 +4,18 @@
   }
   <input
     matInput
+    #appInput="ngModel"
     [placeholder]="placeholder()"
     [name]="name()"
     [(ngModel)]="value"
-    #modelInputNg="ngModel"
-    [required]="required()"
-    [appEmailValidator]="email()"
-    [ngModelOptions]="{standalone: true}"
     [disabled]="disabled()"
     (input)="onInput()"
   />
-  <mat-error>
-    {{ modelInputNg.errors | validationErrorParser }}
-  </mat-error>
+  <!-- [required]="required()" -->
+  <!-- [appEmailValidator]="email()" -->
+  @if (appInput.errors) {
+    <mat-error>
+      {{ appInput.errors | validationErrorParser }}
+    </mat-error>
+  }
 </mat-form-field>
