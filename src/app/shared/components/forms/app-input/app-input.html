@@ -1,0 +1,20 @@
+<mat-form-field [style.width]="width()">
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+  <input
+    matInput
+    [placeholder]="placeholder()"
+    [name]="name()"
+    [(ngModel)]="value"
+    #modelInputNg="ngModel"
+    [required]="required()"
+    [appEmailValidator]="email()"
+    [ngModelOptions]="{standalone: true}"
+    [disabled]="disabled()"
+    (input)="onInput()"
+  />
+  <mat-error>
+    {{ modelInputNg.errors | validationErrorParser }}
+  </mat-error>
+</mat-form-field>
