@@ -1,11 +1,9 @@
 import {
   Component,
   computed,
-  effect,
   input,
   model,
   Optional,
-  signal,
   ViewChild,
 } from '@angular/core';
 import {
@@ -13,20 +11,18 @@ import {
   FormsModule,
   NgForm,
   NgModel,
-  Validator,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ValidationErrorParserPipe } from '../../../../pipes/validation-error-parser-pipe';
-import { provideValidator, WithValidator } from '../mixins/with-validator';
+import { WithValidator } from '../mixins/with-validator';
 import { ComponentBase } from '../../../../../models/mixins-helpers';
 import {
   provideControlValueAccessor,
   WithControlValueAccessor,
 } from '../mixins/with-control-value-accessor';
-import { EmailValidator } from '../../../../directives/email-validator';
 
 @Component({
   selector: 'app-app-input',
@@ -42,10 +38,7 @@ import { EmailValidator } from '../../../../directives/email-validator';
   templateUrl: './app-input.html',
   styleUrl: './app-input.scss',
 })
-export class AppInput
-  extends WithValidator(WithControlValueAccessor(ComponentBase))
-  implements Validator
-{
+export class AppInput extends WithValidator(WithControlValueAccessor(ComponentBase)) {
   @ViewChild('appInput')
   model!: NgModel;
 
@@ -58,6 +51,7 @@ export class AppInput
   required = input(false);
   email = input(false);
   width = input('100%');
+
   validators = computed(() => {
     const validators: ValidatorFn[] = [];
     if (this.required()) {
@@ -69,13 +63,6 @@ export class AppInput
     return validators;
   });
 
-  validatorEffet = effect(() => {
-    const control = this.model.control;
-    control.setValidators(this.validators());
-    control.updateValueAndValidity();
-    control.markAsTouched();
-  });
-
   // You need to find a way to
   // run those method so the parent
   // form gets events to trigger validation
@@ -84,8 +71,4 @@ export class AppInput
     this._onChange(this.value());
     this._onTouched();
   }
-
-  getValidators: () => ValidatorFn[] = () => {
-    return this.validators();
-  };
 }
