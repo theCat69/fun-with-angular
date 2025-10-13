@@ -1,4 +1,4 @@
-import { Component, model } from '@angular/core';
+import { Component, computed, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -7,6 +7,7 @@ import { ValidationErrorParserPipe } from '../../pipes/validation-error-parser-p
 import { EmailValidator } from '../../directives/email-validator';
 import { AppInput } from '../../shared/components/forms/app-input/app-input';
 import { MatButtonModule } from '@angular/material/button';
+import { Adress } from '../../shared/components/forms/adress/adress';
 
 @Component({
   selector: 'app-templates',
@@ -17,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     FormsModule,
     AppInput,
+    Adress,
     NoRInString,
     EmailValidator,
     ValidationErrorParserPipe,
@@ -29,4 +31,24 @@ export class Templates {
   modelInputChiled = model('');
   modelInputChiled2 = model('');
   modelInputChiled3 = model('');
+
+  adress = model({
+    street: '',
+    city: '',
+  });
+
+  finalObject = computed(() => {
+    return {
+      firstInput: this.modelInput(),
+      secondInput: this.modelInputChiled(),
+      thirdInput: this.modelInputChiled2(),
+      fourthInput: this.modelInputChiled3(),
+      adress: this.adress(),
+    };
+  });
+
+  send() {
+    console.log(this.finalObject());
+    console.log(this.finalObject().adress);
+  }
 }

@@ -1,6 +1,21 @@
-import { ControlContainer, ControlValueAccessor, NG_VALUE_ACCESSOR, NgForm, NgModelGroup } from '@angular/forms';
+import {
+  ControlContainer,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  NgForm,
+  NgModelGroup,
+} from '@angular/forms';
 import { AbstractComponentBase, AbstractConstructor } from '../../../../../models/mixins-helpers';
-import { forwardRef, ModelSignal, Optional, Provider, Signal, signal, SkipSelf, Type } from '@angular/core';
+import {
+  forwardRef,
+  ModelSignal,
+  Optional,
+  Provider,
+  Signal,
+  signal,
+  SkipSelf,
+  Type,
+} from '@angular/core';
 
 export function WithControlValueAccessor<
   T,
@@ -11,8 +26,8 @@ export function WithControlValueAccessor<
     abstract name: string | Signal<string>;
 
     disabled = signal(false);
-    _onChange = (value: T | undefined) => { }; // eslint-disable-line
-    _onTouched = () => { }; // eslint-disable-line
+    _onChange = (value: T | undefined) => {}; // eslint-disable-line
+    _onTouched = () => {}; // eslint-disable-line
 
     writeValue(value: any): void {
       this.value.set(value);
