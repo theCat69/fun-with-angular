@@ -7,8 +7,8 @@ import { InjectionToken } from '@angular/core';
 export const CONFIG = new InjectionToken<Config>('config');
 
 const preBootstrap = async (): Promise<[Config]> => {
-  const config = { conf: 'This is a sample configuration string' };
-  // Do shit here
+  const response = await fetch("config.json");
+  const config = await response.json();
   return Promise.resolve([config]);
 };
 

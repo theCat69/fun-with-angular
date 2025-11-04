@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Theme, ThemeService } from '../services/theme.service';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AppRoute, routes } from '../app.routes';
+import { CONFIG } from '../../main';
 
 @Component({
   selector: 'app-layout',
@@ -31,6 +32,8 @@ import { AppRoute, routes } from '../app.routes';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
+  readonly config = inject(CONFIG);
+
   @ViewChild('drawer')
   drawer?: MatSidenav;
 

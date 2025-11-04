@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { LayoutComponent } from './layout/layout.component';
 
 @Component({

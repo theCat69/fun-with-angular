@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "lint-fix": "ng lint --fix",
-    "test": "ng test"
+    "test": "ng test",
+    "e2e": "ng serve --configuration e2e"
   },
   "prettier": {
     "printWidth": 100,
