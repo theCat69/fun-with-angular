@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "lint-fix": "ng lint --fix",
     "test": "ng test",
-    "e2e": "node scripts/replace-config-env.js && ng serve --configuration e2e"
+    "e2e": "node scripts/replace-config-env.js && ng serve --configuration e2e --port 4201"
   },
   "prettier": {
     "printWidth": 100,
@@ -43,7 +43,9 @@
     "@angular/build": "^20.3.4",
     "@angular/cli": "^20.3.4",
     "@angular/compiler-cli": "^20.3.0",
+    "@playwright/test": "^1.56.1",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^24.10.0",
     "angular-eslint": "20.3.0",
     "eslint": "^9.35.0",
     "eslint-config-prettier": "^10.1.8",
