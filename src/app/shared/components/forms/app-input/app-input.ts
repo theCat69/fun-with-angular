@@ -18,9 +18,6 @@ import {
   styleUrl: './app-input.scss',
 })
 export class AppInput extends WithControlValueAccessor<string>() {
-  @ViewChild('appInput')
-  model!: NgModel;
-
   value = model<string>();
   name = input.required<string>();
 

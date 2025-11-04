@@ -6,9 +6,9 @@
   <input
     matInput
     #appInput="ngModel"
+    [(ngModel)]="value"
     [placeholder]="placeholder()"
     [name]="name()"
-    [(ngModel)]="value"
     [disabled]="disabled()"
     (input)="onInput()"
   />

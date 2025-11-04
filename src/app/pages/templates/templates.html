@@ -35,6 +35,13 @@
     required
     appNoRInString
   />
+  <app-select
+    ngModel
+    name="select"
+    [options]="options()"
+  >
+
+  </app-select>
   <app-adress [(adress)]="adress" />
   <button matButton type="submit" [disabled]="!inputTestForm.form.valid">submit</button>
 </form>

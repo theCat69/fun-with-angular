@@ -1,4 +1,4 @@
-import { Component, computed, model } from '@angular/core';
+import { Component, computed, model, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,6 +8,7 @@ import { EmailValidator } from '../../directives/email-validator';
 import { AppInput } from '../../shared/components/forms/app-input/app-input';
 import { MatButtonModule } from '@angular/material/button';
 import { Adress } from '../../shared/components/forms/adress/adress';
+import { AppSelect } from "../../shared/components/forms/app-select/app-select";
 
 @Component({
   selector: 'app-templates',
@@ -22,6 +23,7 @@ import { Adress } from '../../shared/components/forms/adress/adress';
     NoRInString,
     EmailValidator,
     ValidationErrorParserPipe,
+    AppSelect
   ],
   templateUrl: './templates.html',
   styleUrl: './templates.scss',
@@ -31,6 +33,8 @@ export class Templates {
   modelInputChiled = model('');
   modelInputChiled2 = model('');
   modelInputChiled3 = model('');
+
+  options = signal(['hello', 'goodbye', 'whatever']);
 
   adress = model({
     street: '',
