@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "lint-fix": "ng lint --fix",
     "test": "ng test",
-    "e2e": "ng serve --configuration e2e"
+    "e2e": "node scripts/replace-config-env.js && ng serve --configuration e2e"
   },
   "prettier": {
     "printWidth": 100,
