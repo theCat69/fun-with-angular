@@ -63,7 +63,7 @@
                 {
                   "input": "e2e",
                   "output": "/",
-                  "glob": "*.json"
+                  "glob": "config.json"
                 }
               ]
             }
